@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --color-matte-black: #0a0a0a;
+  --color-matte-dark: #121212;
+  --color-arctic-silver: #e2e8f0;
+  --color-teal-glow: #2dd4bf;
+  --color-gold-glow: #fbbf24;
+}
+
+@layer base {
+  body {
+    @apply bg-matte-black text-arctic-silver font-sans antialiased selection:bg-teal-glow/30 selection:text-teal-glow;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+  }
+  
+  .aurora-button {
+    @apply relative overflow-hidden rounded-full bg-white/5 border border-white/10 px-8 py-4 text-arctic-silver transition-all duration-500 hover:border-teal-glow/50 hover:text-white;
+  }
+  
+  .aurora-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-teal-glow/0 via-teal-glow/20 to-gold-glow/20 opacity-0 transition-opacity duration-500 blur-md z-0;
+  }
+  
+  .aurora-button:hover::before {
+    @apply opacity-100;
+  }
+  
+  .aurora-button span {
+    @apply relative z-10 font-medium tracking-wide;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-arctic-silver via-white to-arctic-silver;
+  }
+  
+  .text-gradient-teal {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-glow to-emerald-300;
+  }
+}
